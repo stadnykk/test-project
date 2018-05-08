@@ -1,20 +1,79 @@
-<!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center">
-  <h1>
-    Welcome to {{ title }}!
-  </h1>
-  <img width="300" alt="Angular Logo" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg==">
-</div>
-<h2>Here are some links to help you start: </h2>
-<ul>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://angular.io/tutorial">Tour of Heroes</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://github.com/angular/angular-cli/wiki">CLI Documentation</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://blog.angular.io/">Angular blog</a></h2>
-  </li>
-</ul>
+<section class="page-container">
+    <form class="search" [formGroup]="searchForm">
+        <input formControlName="search"
+               type="text"
+               class="search-field"/>
+
+        <button class="submit" type="submit" (click)="onSubmit()">Search</button>
+    </form>
+    <div class="table-results" *ngIf="results">
+        <table class="table-title">
+            <thead class="table-head">
+                <tr>
+                    <td class="table-cell" (click)="sortBy('admin_county')">admin_county</td>
+                    <td class="table-cell" (click)="sortBy('admin_district')">admin_district</td>
+                    <td class="table-cell" (click)="sortBy('admin_ward')">admin_ward</td>
+                    <td class="table-cell" (click)="sortBy('ccg')">ccg</td>
+                    <td class="table-cell" (click)="sortBy('ccg')">ccg</td>
+                    <td class="table-cell" (click)="sortBy('codes')">codes</td>
+                    <td class="table-cell" (click)="sortBy('country')">country</td>
+                    <td class="table-cell" (click)="sortBy('eastings')">eastings</td>
+                    <td class="table-cell" (click)="sortBy('european_electoral_region')">european_electoral_region</td>
+                    <td class="table-cell" (click)="sortBy('incode')">incode</td>
+                    <td class="table-cell" (click)="sortBy('latitude')">latitude</td>
+                    <td class="table-cell" (click)="sortBy('longitude')">longitude</td>
+                    <td class="table-cell" (click)="sortBy('lsoa')">lsoa</td>
+                    <td class="table-cell" (click)="sortBy('msoa')">msoa</td>
+                    <td class="table-cell" (click)="sortBy('nhs_ha')">nhs_ha</td>
+                    <td class="table-cell" (click)="sortBy('northings')">northings</td>
+                    <td class="table-cell" (click)="sortBy('nuts')">nuts</td>
+                    <td class="table-cell" (click)="sortBy('outcode')">outcode</td>
+                    <td class="table-cell" (click)="sortBy('parish')">parish</td>
+                    <td class="table-cell" (click)="sortBy('parliamentary_constituency')">parliamentary_constituency</td>
+                    <td class="table-cell" (click)="sortBy('postcode')">postcode</td>
+                    <td class="table-cell" (click)="sortBy('primary_care_trust')">primary_care_trust</td>
+                    <td class="table-cell" (click)="sortBy('quality')">quality</td>
+                    <td class="table-cell" (click)="sortBy('region')">region</td>
+                </tr>
+            </thead>
+            <tbody *ngFor="let result of results" class="table-results">
+                <tr (click)="showDialog(result?.outcode)">
+                    <td class="table-cell">{{result?.admin_county}}</td>
+                    <td class="table-cell">{{result?.admin_district}}</td>
+                    <td class="table-cell">{{result?.admin_ward}}</td>
+                    <td class="table-cell">{{result?.ccg}}</td>
+                    <td class="table-cell">{{result?.ccg}}</td>
+                    <td class="table-cell">
+                        {{result?.codes.admin_county}}
+                        {{result?.codes.admin_district}}
+                        {{result?.codes.admin_ward}}
+                        {{result?.codes.ccg}}
+                        {{result?.codes.nuts}}
+                        {{result?.codes.parish}}
+                        {{result?.codes.parliamentary_constituency}}
+                    </td>
+                    <td class="table-cell">{{result?.country}}</td>
+                    <td class="table-cell">{{result?.eastings}}</td>
+                    <td class="table-cell">{{result?.european_electoral_region}}</td>
+                    <td class="table-cell">{{result?.incode}}</td>
+                    <td class="table-cell">{{result?.latitude}}</td>
+                    <td class="table-cell">{{result?.longitude}}</td>
+                    <td class="table-cell">{{result?.lsoa}}</td>
+                    <td class="table-cell">{{result?.msoa}}</td>
+                    <td class="table-cell">{{result?.nhs_ha}}</td>
+                    <td class="table-cell">{{result?.northings}}</td>
+                    <td class="table-cell">{{result?.nuts}}</td>
+                    <td class="table-cell">{{result?.outcode}}</td>
+                    <td class="table-cell">{{result?.parish}}</td>
+                    <td class="table-cell">{{result?.parliamentary_constituency}}</td>
+                    <td class="table-cell">{{result?.postcode}}</td>
+                    <td class="table-cell">{{result?.primary_care_trust}}</td>
+                    <td class="table-cell">{{result?.quality}}</td>
+                    <td class="table-cell">{{result?.region}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <app-outcode-dialog [outcode]="outcode"></app-outcode-dialog>
+</section>
 

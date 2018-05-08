@@ -1,0 +1,44 @@
+
+.page-container {
+    display: flex;
+    flex-direction: column;
+    user-select: none;
+
+    .search {
+        margin: 20px auto;
+
+        .search-field {
+            height: 40px;
+            width: 350px;
+        }
+
+        .submit {
+            padding: 16px;
+            border: none;
+            &:active {
+                box-shadow: 0 1px 3px rgb(0, 0, 0);
+            }
+        }
+    }
+
+    .table-title {
+        border: 1px solid black;
+
+        .table-head {
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .table-cell {
+            padding: 10px;
+            border: 1px solid black;
+            max-width: 150px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+    }
+
+    .table-results tr:hover {
+        background-color: #c2cdd4;
+    }
+}
